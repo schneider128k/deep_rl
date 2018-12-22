@@ -1,0 +1,215 @@
+\documentclass[12pt]{article}
+\usepackage{amsthm,amssymb,hyperref}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{fullpage}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{lem}{Lemma}
+\newtheorem{con}[thm]{Conjecture}
+\newtheorem{rem}{Remark}
+\newtheorem{dfn}{Definition}
+
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+
+\renewcommand{\S}{\mathcal{S}}
+\newcommand{\A}{\mathcal{A}}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\cR}{\mathcal{R}}
+
+\begin{document}
+\title{Algorithms in reinforcement learning}
+
+\author{Pawel Wocjan\thanks{\texttt{wocjan@cs.ucf.edu}, Department of Computer Science, University of Central Florida, USA}}
+
+\maketitle
+
+\abstract{This is a brief overview of the most important algorithms in reinfocement learning}
+
+%
+%
+%
+
+\section{Markov decision processes}
+
+\subsection{The agent-environment interface}
+
+The agent and environment interact at each of a sequence of discrete time steps, $t=01,2,\ldots$. At each time step $t$, the agent receives some representation of the environement's 
+\emph{state}, $S_t\in\S$, and on that basis selects an \emph{action} $A_t\in\A(s)$. One time step later, in part as a consequence of its action, the agent receives a numerical reward $R_{t+1}\in\cR\subset \mathbb{R}$, and finds itself in a new state, $S_{t+1}$. The MDP and agent together thereby give rise to a sequence or \emph{trajectory} that begins like this:
+\[
+S_0,A_0,R_1,S_1,A_1,S_2,A_2,R_3,\ldots
+\]
+
+%
+%
+%
+
+\section{Dynamic programming}
+
+\section{Monte Carlo learning}
+
+\subsection{Monte Carlo prediction}
+
+\section{Temporal difference learning}
+
+\subsection{TD prediction}\label{subsec:prediction}
+
+Both TD and Monte Carlo methods use experience to solve the prediction problem. Given some experience following a policy $\pi$, both methods update their estimate $V$ of $v_\pi$ for the
+nonterminal states $S_t$ occuring in that experience. Roughly speaking, Monte Carlo methods wait until the return following the visit is known, then use that return as a target for $V(S_t)$. 
+A simple every-visit Monte Carlo method suitable for nonstationary environments is
+\begin{equation}
+V(S_t) \leftarrow V(S_t) + \alpha [G_t - V(S_t)]\,,
+\end{equation}
+where $G_t$ is the actual return following time $t$, and $\alpha$ is a constant step-size parameter.
+
+Whereas Monte Carlo methods must wait until the end of the episode to determine the increment to $V(S_t)$ (only then is $G_t$ known), TD methods need to wait only until the next step.
+At time $t+1$ they immediately form a target and make a useful update using the observed reward $R_{t+1}$ and the estimate $V(S_{t+1})$. The simplest TD method makes the update 
+\begin{equation}
+V(S_t) \leftarrow V(S_t) + \alpha [ R_{t+1} + \gamma V(S_{t+1}) - V(S_t)]
+\end{equation}
+immediately on transition to $S_{t+1}$ and receiving $R_{t+1}$. In effect, the target for the Monte Carlo update is $G_t$, whereas the target for the TD update is $R_{t+1} + \gamma V(S_{t+1})$. This TD method is called TD$(0)$, or one-step TD. It is a special case of the TD$(\lambda)$ and $n$-step TD methods that described in this note as well.
+
+\begin{algorithm}
+\caption{Tabular TD$(0)$ for estimating $v_\pi$}
+\begin{algorithmic}
+\State Input: the policy to $\pi$ to be evaluated
+\State Algorithm parameter: step size $\alpha$
+\State Initialize $V(s)$, for all $s\in\S^+$, arbitrarily except that $V(terminal)$=0
+
+\medskip
+\For{each episode}
+  \State Initialize $S$
+  \For{each step of episode}
+    \State $A\leftarrow$ action given by $\pi$ for $S$
+    \State Take action $A$, observe $R,S'$
+    \State $V(S)\leftarrow V(S) + \alpha [R + \gamma V(S') - V(S)]$
+    \State $S\leftarrow S'$
+    \State {\bf if} $S$ is terminal {\bf then} break
+  \EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+%
+%
+%
+
+\subsection{Sarsa: on-policy TD control}
+
+In Subsection~\ref{subsec:prediction} we considered transitions from state to state and learned the values of states. Now we consider transitions from state-action pair to state-action pair, and learn the values of
+state-action pairs. We use the update
+\begin{equation}
+Q(S_t,A_t)\leftarrow Q(S_t,A_t) + \alpha [R_{t+1} + \gamma Q(S_{t+1}, A_{t+1}) - Q(S_t, A_t)]\,.
+\end{equation}
+which is done after every transition from a non-terminal state $S_t$. ???
+
+
+\begin{algorithm}
+\caption{Sarsa (on-policy TD control) for estimating $Q\approx q_*$}
+\begin{algorithmic}
+\State Initialize $Q(s,a)$, for all $s\in\S^+$, $a\in\A(s)$, arbitrarily except that $Q(terminal,\cdot)=0$
+
+\medskip
+\For{each episode}
+  \State Initialize $S$
+  \State Choose $A$ from $S$ using policy derived from $Q$ (e.g., $\epsilon$-greedy)
+  \For{each step of episode}
+    \State Take action $A$, observe $R$, $S'$
+    \State Choose $A'$ from $S'$ using policy derived from $Q$ (e.g., $\epsilon$-greedy)
+    \State $Q(S,A)\leftarrow Q(S,A) + \alpha [R + \gamma Q(S',A') - Q(S,A)]$
+    \State $S\leftarrow S'$; $A\leftarrow A'$;
+    \State {\bf if} $S$ is terminal {\bf then} break
+  \EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+%
+%
+%
+
+\subsection{Expected Sarsa}
+
+Consider the learning algorithm that is just like $Q$-learning except that instead of the maximum over next state-action pairs it uses the expected value, taking into account how likely each action is under the current policy. That is, consider the algorithm with the update rule
+\begin{eqnarray*}
+Q(S_t,A_t) 
+& \leftarrow & 
+Q(S_t,A_t) + \alpha \Big[ R_{t+1} + \gamma \E_\pi[Q(S_{t+1},A_{t+1}) | S_{t+1}] - Q(S_t,A_t) \Big] \\
+& \leftarrow &
+Q(S_t,A_t) + \alpha \Big[ R_{t+1} + \gamma \sum_a \pi(a|S_{t+1}) Q(S_{t+1},a) - Q(S_t,A_t) \Big]\,, \\
+\end{eqnarray*}
+but that otherwise follows the schema of $Q$-learning. 
+
+%
+%
+%
+
+\subsection{Q-learning: off-policy TD control}
+
+One of this early breakthroughs in reinforcement learning was the development of an off-policy TD control algorithm known as Q-learning, defined by
+\begin{equation}
+Q(S_t,A_t) \leftarrow Q(S_t,A_t) + \alpha[ R_{t+1} + \gamma \max_a Q(S_{t+1},a) - Q(S_t,A_t)]\,.
+\end{equation}
+In this case, the learned action-value function, $Q$, directly approximates $q_*$, the optimal action-value function, independent of the policy being followed. The policy still has an effect in that it determines which state-action pairs are visited an updated. However, all that is required for the correct convergence is that all pairs continue to be updated.
+
+\begin{algorithm}
+\caption{Q-learning (off-policy TD control) for estimating $\pi \approx \pi_*$}
+\begin{algorithmic}
+\State Algorithm parameters: step size $\alpha\in (0,1]$, small $\epsilon > 0$
+\State Initialize $Q(s,a)$, for all $s\in\S^+, a\in\A(s)$, except that $Q(terminal,\cdot)=0$ 
+\medskip
+\For{each episode}
+  \State Initialize $S$
+  \For{each step of the episode}
+    \State Choose $A$ from $S$ using policy derived from $Q$ (e.g., $\epsilon$-greedy)
+    \State Take action $A$, observe $R$, $S'$
+    \State $Q(S,A) \leftarrow Q(S,A) + \alpha [R + \gamma \max_a Q(S',a) - Q(S,A)]$
+    \State $S\leftarrow S'$
+    \State {\bf if} $S$ is terminal {\bf then} break
+  \EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+%
+%
+%
+
+\subsection{Double Q-learning}
+
+All previously discussed control algorithms involve maximization in the construction of their target policies. In these algorithms, a maximum over estimated values is used implicitly as an estimate of the maximum value, which can lead to a significant positive bias. To see why, consider a single state $s$ where there are many actions $a$ whose true values $q(s,a)$, are all zero but whose estimated values $Q(s,a)$, are uncertain and thus distributed some above and some below zero. The maximum of these values is zero, but the maximum of the estimates is positive, a positive bias. We call this maximization bias.
+
+\begin{algorithm}
+\caption{Double Q-learning, for estimating $Q_1 \approx Q_2 \approx q_*$}
+\begin{algorithmic}
+\State Algorithm parameters: step size $\alpha\in (0,1]$, small $\epsilon > 0$
+\State Initialize $Q_1(s, a)$ and $Q_2(s, a)$, for all $s\in\S^+$, $a\in\A(s)$, such that $Q(terminal, \cdot)=0$
+
+\medskip
+\For{each episode}
+  \State Initialize $S$
+  \For{each step of episode}
+    \State Choose $A$ from $S$ using the policy $\epsilon$-greedy in $Q_1 + Q_2$
+    \State Take action $A$, observe $R,S'$
+    \State With probability $0.5$
+    \State \quad $Q_1(S,A)\leftarrow Q_1(S,A) + \alpha [ R + \gamma Q_2(S',\mathrm{argmax}_a Q_1(S',a)) - Q_1(S,A) ]$
+    \State else
+    \State \quad $Q_2(S,A)\leftarrow Q_2(S,A) + \alpha [ R + \gamma Q_1(S',\mathrm{argmax}_a Q_2(S',a)) - Q_2(S,A) ]$
+    \State $S\leftarrow S'$
+    \State {\bf if} $S$ terminal {\bf then} break
+  \EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+
+
+
+
+\begin{thebibliography}{10}
+\end{thebibliography}
+
+\end{document}

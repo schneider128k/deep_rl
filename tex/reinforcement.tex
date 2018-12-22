@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt]{book}
 \usepackage{amsthm,amssymb,hyperref}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
@@ -21,21 +21,48 @@
 \newcommand{\cR}{\mathcal{R}}
 
 \begin{document}
-\title{Algorithms in reinforcement learning}
 
-\author{Pawel Wocjan\thanks{\texttt{wocjan@cs.ucf.edu}, Department of Computer Science, University of Central Florida, USA}}
+\title{Deep Reinforcement Learning}
+
+\author{Pawel Wocjan}
 
 \maketitle
 
-\abstract{This is a brief overview of the most important algorithms in reinfocement learning}
+\tableofcontents
+
+%\abstract{This is a brief overview of the most important algorithms in reinfocement learning.}
 
 %
 %
 %
 
-\section{Markov decision processes}
+\chapter{Introduction}
 
-\subsection{The agent-environment interface}
+This is a summary of the most important algorithms and methods in deep reinforcement learning. Work in progress.
+
+%
+%
+%
+
+\chapter{Multi-Armed Bandit Problem}
+
+\section{Problem description}
+
+\section{The epsilon-greedy policy}
+
+\section{The softmax exploration algorithm}
+
+\section{The upper confidence bound algorithm}
+
+\section{The Thompson sampling algorithm}
+
+%
+%
+%
+
+\chapter{Markov decision processes}
+
+\section{The agent-environment interface}
 
 The agent and environment interact at each of a sequence of discrete time steps, $t=01,2,\ldots$. At each time step $t$, the agent receives some representation of the environement's 
 \emph{state}, $S_t\in\S$, and on that basis selects an \emph{action} $A_t\in\A(s)$. One time step later, in part as a consequence of its action, the agent receives a numerical reward $R_{t+1}\in\cR\subset \mathbb{R}$, and finds itself in a new state, $S_{t+1}$. The MDP and agent together thereby give rise to a sequence or \emph{trajectory} that begins like this:
@@ -47,15 +74,15 @@ S_0,A_0,R_1,S_1,A_1,S_2,A_2,R_3,\ldots
 %
 %
 
-\section{Dynamic programming}
+\chapter{Dynamic programming}
 
-\section{Monte Carlo learning}
+\chapter{Monte Carlo learning}
 
-\subsection{Monte Carlo prediction}
+\section{Monte Carlo prediction}
 
-\section{Temporal difference learning}
+\chapter{Temporal difference learning}
 
-\subsection{TD prediction}\label{subsec:prediction}
+\section{TD prediction}\label{subsec:prediction}
 
 Both TD and Monte Carlo methods use experience to solve the prediction problem. Given some experience following a policy $\pi$, both methods update their estimate $V$ of $v_\pi$ for the
 nonterminal states $S_t$ occuring in that experience. Roughly speaking, Monte Carlo methods wait until the return following the visit is known, then use that return as a target for $V(S_t)$. 
@@ -97,7 +124,7 @@ immediately on transition to $S_{t+1}$ and receiving $R_{t+1}$. In effect, the t
 %
 %
 
-\subsection{Sarsa: on-policy TD control}
+\section{Sarsa: on-policy TD control}
 
 In Subsection~\ref{subsec:prediction} we considered transitions from state to state and learned the values of states. Now we consider transitions from state-action pair to state-action pair, and learn the values of
 state-action pairs. We use the update
@@ -131,7 +158,7 @@ which is done after every transition from a non-terminal state $S_t$. ???
 %
 %
 
-\subsection{Expected Sarsa}
+\section{Expected Sarsa}
 
 Consider the learning algorithm that is just like $Q$-learning except that instead of the maximum over next state-action pairs it uses the expected value, taking into account how likely each action is under the current policy. That is, consider the algorithm with the update rule
 \begin{eqnarray*}
@@ -147,7 +174,7 @@ but that otherwise follows the schema of $Q$-learning.
 %
 %
 
-\subsection{Q-learning: off-policy TD control}
+\section{Q-learning: off-policy TD control}
 
 One of this early breakthroughs in reinforcement learning was the development of an off-policy TD control algorithm known as Q-learning, defined by
 \begin{equation}
@@ -178,7 +205,7 @@ In this case, the learned action-value function, $Q$, directly approximates $q_*
 %
 %
 
-\subsection{Double Q-learning}
+\section{Double Q-learning}
 
 All previously discussed control algorithms involve maximization in the construction of their target policies. In these algorithms, a maximum over estimated values is used implicitly as an estimate of the maximum value, which can lead to a significant positive bias. To see why, consider a single state $s$ where there are many actions $a$ whose true values $q(s,a)$, are all zero but whose estimated values $Q(s,a)$, are uncertain and thus distributed some above and some below zero. The maximum of these values is zero, but the maximum of the estimates is positive, a positive bias. We call this maximization bias.
 
@@ -206,6 +233,25 @@ All previously discussed control algorithms involve maximization in the construc
 \end{algorithm}
 
 
+\chapter{Neural Networks}
+
+\section{Feed-Forward Networks}
+
+\section{Convolutional Networks}
+
+\section{Recurrent Networks}
+
+
+\chapter{Deep Q Network}
+
+\section{DQN}
+
+\section{Double DQN}
+
+\section{Dueling DQN}
+
+
+\chapter{Deep Recurrent Q Network}
 
 
 

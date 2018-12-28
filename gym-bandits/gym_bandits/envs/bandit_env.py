@@ -33,9 +33,9 @@ class BanditEnv(gym.Env):
         self.action_space = spaces.Discrete(self.n_bandits)
         self.observation_space = spaces.Discrete(1)
 
-        self._seed()
+        self.seed()
 
-    def _seed(self, seed=None):
+    def seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
         return [seed]
 
@@ -79,9 +79,5 @@ class BanditTenArmedGaussianEnv(BanditEnv):
 
         for i in range(bandits):
             r_dist.append([np.random.normal(0, 1), 1])
-
-        print("bandit ten armed gaussian")
-        print(p_dist)
-        print(r_dist)
 
         BanditEnv.__init__(self, p_dist=p_dist, r_dist=r_dist)

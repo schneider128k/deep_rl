@@ -20,12 +20,9 @@ selection is like a play of one of the slot machine’s levers, and the rewards 
 for hitting the jackpot. Through repeated action selections you are to maximize your
 winnings by concentrating your actions on the best levers.
 
-**Currently, only** 
-
-`BanditTenArmedGaussian-v0`: 10 armed bandit described in Section 2.3 "The 10-armed Testbed" of the book [Reinforcement Learning: An Introduction](http://incompleteideas.net/book/the-book-2nd.html) (Sutton and Barto)
-
-**is available. I am working on implementing other k-armed bandit problems.**
-
+Currently, only the 10-armed bandit described in Section 2.3 "The 10-armed Testbed" of the book 
+[Reinforcement Learning: An Introduction](http://incompleteideas.net/book/the-book-2nd.html) (Sutton and Barto)
+is available. I am working on implementing other k-armed bandit problems.**
 
 ## Installation
 
@@ -38,5 +35,5 @@ pip install .
 In your gym environment
 ```python
 import gym_bandits
-env = gym.make("BanditTenArmedGaussian-v0") # Replace with relevant env
+env = gym.make("BanditTenArmedGaussian-v0") 
 ```

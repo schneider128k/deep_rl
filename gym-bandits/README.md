@@ -22,11 +22,10 @@ winnings by concentrating your actions on the best levers.
 
 **Currently, only** 
 
-`BanditTenArmedGaussian-v0` 
+`BanditTenArmedGaussian-v0`: 10 armed bandit described in Section 2.3 "The 10-armed Testbed" of the book [Reinforcement Learning: An Introduction](http://incompleteideas.net/book/the-book-2nd.html) (Sutton and Barto)
 
-**is available. I am working on implementing other k-armed bandit problem.**
+**is available. I am working on implementing other k-armed bandit problems.**
 
-* `BanditTenArmedGaussian-v0`: 10 armed bandit mentioned on page 30 of [Reinforcement Learning: An Introduction](http://incompleteideas.net/book/the-book-2nd.html) (Sutton and Barto)
 
 ## Installation
 

@@ -1,2 +1,2 @@
-from gym_bandits.envs.bandit_env import BanditTenArmedGaussianEnv
+from gym_bandits.envs.bandit_ten_armed_gaussian_env import BanditTenArmedGaussianEnv
 

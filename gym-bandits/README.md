@@ -21,8 +21,7 @@ for hitting the jackpot. Through repeated action selections you are to maximize 
 winnings by concentrating your actions on the best levers.
 
 Currently, only the 10-armed bandit described in Section 2.3 "The 10-armed Testbed" of the book 
-[Reinforcement Learning: An Introduction](http://incompleteideas.net/book/the-book-2nd.html) (Sutton and Barto)
-is available. I am working on implementing other k-armed bandit problems.**
+Reinforcement Learning: An Introduction by Sutton and Barto is available. I am working on implementing other k-armed bandit problems.
 
 ## Installation
 

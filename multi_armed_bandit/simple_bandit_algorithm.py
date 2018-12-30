@@ -8,7 +8,7 @@ env = gym.make("BanditTenArmedGaussian-v0")
 # A simple bandit algorithm
 # Algorithm on page 32 of Reinforcement Learning by Sutton and Barto (2nd edition)
 
-steps = 500
+steps = 1000
 
 arms = env.action_space.n
 

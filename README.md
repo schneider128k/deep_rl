@@ -2,6 +2,12 @@
 
 I am offering a weekly seminar on deep reinforcement learning in Spring 2019.  My goal is put together materials and code for a course on deep reinforcement learning that I would teach in Fall 2019 or Spring 2020.
 
+### Rendering openai gym in Google colab ###
+
+For demonstraction purposes, it will be convenient to render opengym in Google colab. Here is a colab notebook showing how to accomplish this.
+
+[Rendering openai gym in Google colab](https://colab.research.google.com/drive/1_fY8w7kqNE_vqB9QQWN6yJi0_Tb2OMJa)
+
 ### Meeting on 02/08
 
 I introduced the key concepts in RL and gave an overview of RL algorithms. I presented the mathematics behind the simplest policy gradient for categorical policies.

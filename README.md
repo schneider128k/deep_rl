@@ -19,8 +19,15 @@ I want to discuss the derivation of the improved reward-to-go policy gradient an
 
 ---
 
-### Topics for future meeting
+### Topics for future meetings
 
 - Policy gradients for continuous action spaces
 - [Proximal policy optimization](https://blog.openai.com/openai-baselines-ppo/)
 - ...
+
+---
+
+- The folder ```colab``` contains instructions how to install ```gym-retro``` (Atari games) on Google colab. More generally, it contains instructions how to access files in Google drive from a Colab notebook.
+- The folder ```gym-bandits``` contains a new OpenAI environment for the multi-armed bandit problem. It can serve as a blue print for implementing new environments.
+- The folder ```multi_armed_bandits``` contains some simple algorithms for the multi-armed bandit problem.
+- In the folder ```tex```, I started describing basic RL algorithms. 

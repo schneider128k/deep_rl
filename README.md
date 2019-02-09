@@ -12,7 +12,14 @@ I introduced the key concepts in RL and gave an overview of RL algorithms. I pre
 
 ### Meeting on 02/15
 
-I want to discuss the derivation of the improved reward-to-go policy gradient and to present its implementation in TensorFlow and Keras. I also want to apply it this algorithm to problems such as 
+I want to discuss the derivation of the improved reward-to-go policy gradient and to present its implementation in TensorFlow and Keras. 
+The code is available at:
+
+- [```1_simple_pg.py```](https://github.com/openai/spinningup/blob/master/spinup/examples/pg_math/1_simple_pg.py)
+- [```2_rtg_pg.py```](https://github.com/openai/spinningup/blob/master/spinup/examples/pg_math/2_rtg_pg.py)
+
+I also want to apply this algorithm to simple problems such as 
+
 - [Acrobot](https://gym.openai.com/envs/Acrobot-v1/)
 - [Cartpole](https://gym.openai.com/envs/CartPole-v1/)
 - [Lunar lander](https://gym.openai.com/envs/LunarLander-v2/)

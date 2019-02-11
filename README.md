@@ -16,18 +16,19 @@ I introduced the key concepts in RL and gave an overview of RL algorithms. I pre
 - [Part 2: Kinds of RL Algorithms](https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html)
 - [Part 3: Intro to Policy Optimization](https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html)
 
-The code for the simple gradient is available at [```1_simple_pg.py```](https://github.com/openai/spinningup/blob/master/spinup/examples/pg_math/1_simple_pg.py).
+The TensorFlow implementation the simple gradient is available at [```1_simple_pg.py```](https://github.com/openai/spinningup/blob/master/spinup/examples/pg_math/1_simple_pg.py).
 
 ### Meeting on 02/15
 
-I want to discuss the derivation of the improved reward-to-go policy gradient and to present its implementation in TensorFlow and Keras. 
-The code is available at [```2_rtg_pg.py```](https://github.com/openai/spinningup/blob/master/spinup/examples/pg_math/2_rtg_pg.py).
+I want to discuss the derivation of the improved reward-to-go policy gradient and to present its implementation in TensorFlow, which is  available at [```2_rtg_pg.py```](https://github.com/openai/spinningup/blob/master/spinup/examples/pg_math/2_rtg_pg.py).
 
-I also want to apply this algorithm to simple problems such as 
+Use this algorithm to solve the following simple problems: 
 
 - [Acrobot](https://gym.openai.com/envs/Acrobot-v1/)
 - [Cartpole](https://gym.openai.com/envs/CartPole-v1/)
 - [Lunar lander](https://gym.openai.com/envs/LunarLander-v2/)
+
+Reimplement this algorithm using Keras.
 
 ---
 

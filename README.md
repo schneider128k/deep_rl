@@ -4,7 +4,7 @@ I am offering a weekly seminar on deep reinforcement learning in Spring 2019.  M
 
 ### Rendering openai gym in Google colab ###
 
-For demonstraction purposes, it will be convenient to render opengym in Google colab. Here is a colab notebook showing how to accomplish this.
+For demonstration purposes, it will be convenient to render opengym in Google colab. Here is a colab notebook showing how to accomplish this.
 
 [Rendering openai gym in Google colab](https://colab.research.google.com/drive/1_fY8w7kqNE_vqB9QQWN6yJi0_Tb2OMJa)
 
@@ -16,13 +16,13 @@ I introduced the key concepts in RL and gave an overview of RL algorithms. I pre
 - [Part 2: Kinds of RL Algorithms](https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html)
 - [Part 3: Intro to Policy Optimization](https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html)
 
-The TensorFlow implementation the simple gradient is available at [```1_simple_pg.py```](https://github.com/openai/spinningup/blob/master/spinup/examples/pg_math/1_simple_pg.py).
+The TensorFlow implementation of the simple gradient is available at [```1_simple_pg.py```](https://github.com/openai/spinningup/blob/master/spinup/examples/pg_math/1_simple_pg.py).
 
 ### Meeting on 02/15
 
-I want to discuss the derivation of the improved reward-to-go policy gradient and to present its implementation in TensorFlow, which is  available at [```2_rtg_pg.py```](https://github.com/openai/spinningup/blob/master/spinup/examples/pg_math/2_rtg_pg.py).
+I want to discuss the derivation of the improved *reward-to-go* policy gradient and to present its implementation in TensorFlow, which is  available at [```2_rtg_pg.py```](https://github.com/openai/spinningup/blob/master/spinup/examples/pg_math/2_rtg_pg.py).
 
-Use this algorithm to solve the following simple problems: 
+Use the reward-to-go policy gradient algorithm to solve the following simple problems: 
 
 - [Acrobot](https://gym.openai.com/envs/Acrobot-v1/)
 - [Cartpole](https://gym.openai.com/envs/CartPole-v1/)

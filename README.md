@@ -34,8 +34,18 @@ Reimplement this algorithm using Keras.
 
 ### Topics for future meetings
 
-- Policy gradients for continuous action spaces
+- Continuous action spaces
+- [Trust region optimization](https://spinningup.openai.com/en/latest/algorithms/trpo.html)
 - [Proximal policy optimization](https://blog.openai.com/openai-baselines-ppo/)
+- ...
+
+### Review fundamental results
+
+- gradient
+- Jacobian matrix
+- conjugate gradient method
+- KKT conditions
+- Lagrangian duality
 - ...
 
 ---

@@ -6,7 +6,9 @@ I am offering a weekly seminar on deep reinforcement learning in Spring 2019.  M
 
 For demonstration purposes, it will be convenient to render opengym in Google colab. Here is a colab notebook showing how to accomplish this.
 
-[Rendering openai gym in Google colab](https://colab.research.google.com/drive/1_fY8w7kqNE_vqB9QQWN6yJi0_Tb2OMJa)
+[Render openai gym in Google colab](https://colab.research.google.com/drive/1_fY8w7kqNE_vqB9QQWN6yJi0_Tb2OMJa)
+
+[Train Acrobot with reward-to-go policy gradient, render performance after training](https://colab.research.google.com/drive/1uWByWJ2muHDVf3w6fl8PrQ74CL3DX-4s), the rendering is too slow
 
 ### Meeting on 02/08
 

@@ -39,6 +39,8 @@ Reimplement this algorithm using Keras.
 - [Proximal policy optimization](https://blog.openai.com/openai-baselines-ppo/)
 - ...
 
+---
+
 ### Review fundamental results
 
 - gradient
@@ -49,6 +51,8 @@ Reimplement this algorithm using Keras.
 - ...
 
 ---
+
+### Folders
 
 - The folder ```colab``` contains instructions how to install ```gym-retro``` (Atari games) on Google colab. More generally, it contains instructions how to access files in Google drive from a Colab notebook.
 - The folder ```gym-bandits``` contains a new OpenAI environment for the multi-armed bandit problem. It can serve as a blue print for implementing new environments.

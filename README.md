@@ -32,6 +32,8 @@ Use the reward-to-go policy gradient algorithm to solve the following simple pro
 
 Reimplement this algorithm using Keras.
 
+[OK solution for lunar lander](https://colab.research.google.com/drive/1uWByWJ2muHDVf3w6fl8PrQ74CL3DX-4s)
+
 ---
 
 ### Topics for future meetings

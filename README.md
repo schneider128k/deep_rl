@@ -32,14 +32,22 @@ Use the reward-to-go policy gradient algorithm to solve the following simple pro
 
 Reimplement this algorithm using Keras.
 
-[OK solution for lunar lander](https://colab.research.google.com/drive/1uWByWJ2muHDVf3w6fl8PrQ74CL3DX-4s)
+[Solution for lunar lander](https://colab.research.google.com/drive/1uWByWJ2muHDVf3w6fl8PrQ74CL3DX-4s)
+
+The policy found at the end managed to land the lunar lander, but only got approx. 50 as total reward. TODO: add the ability to save and load model.
 
 ---
 
 ### Topics for future meetings
 
 - Continuous action spaces
-- [Trust region optimization](https://spinningup.openai.com/en/latest/algorithms/trpo.html)
+- [Trust region policy optimization](https://spinningup.openai.com/en/latest/algorithms/trpo.html)
+
+  [Notes on trust region policy optimization](http://blog.luyiren.me/posts/trpo.html), 
+  [MM algorithms](http://personal.psu.edu/drh20/papers/mmtutorial.pdf),
+  [Trust region](https://en.wikipedia.org/wiki/Trust_region), and 
+  [Kakade et al.](https://papers.nips.cc/paper/2073-a-natural-policy-gradient.pdf)
+  [Kakade and Langford](https://people.eecs.berkeley.edu/~pabbeel/cs287-fa09/readings/KakadeLangford-icml2002.pdf)
 - [Proximal policy optimization](https://blog.openai.com/openai-baselines-ppo/)
 - ...
 

@@ -48,6 +48,8 @@ The policy found at the end managed to land the lunar lander, but only got appro
   [Trust region](https://en.wikipedia.org/wiki/Trust_region), 
   [Kakade et al.](https://papers.nips.cc/paper/2073-a-natural-policy-gradient.pdf), and
   [Kakade and Langford](https://people.eecs.berkeley.edu/~pabbeel/cs287-fa09/readings/KakadeLangford-icml2002.pdf)
+  
+  [Advanced policy gradient methods: natural gradient, TRPO, and more](http://rll.berkeley.edu/deeprlcourse/docs/lec5.pdf)
 - [Proximal policy optimization](https://blog.openai.com/openai-baselines-ppo/)
 - ...
 
@@ -58,8 +60,12 @@ The policy found at the end managed to land the lunar lander, but only got appro
 - gradient
 - Jacobian matrix
 - conjugate gradient method
+
+  [Hessian free optimization](http://andrew.gibiansky.com/blog/machine-learning/hessian-free-optimization/), [Numerical optimization: understanding L-BFGS](http://aria42.com/blog/2014/12/understanding-lbfgs)
 - KKT conditions
 - Lagrangian duality
+
+  [Lagrangian duality for dummies](https://cs.stanford.edu/people/davidknowles/lagrangian_duality.pdf)
 - ...
 
 ---

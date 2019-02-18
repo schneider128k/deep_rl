@@ -45,8 +45,8 @@ The policy found at the end managed to land the lunar lander, but only got appro
 
   [Notes on trust region policy optimization](http://blog.luyiren.me/posts/trpo.html), 
   [MM algorithms](http://personal.psu.edu/drh20/papers/mmtutorial.pdf),
-  [Trust region](https://en.wikipedia.org/wiki/Trust_region), and 
-  [Kakade et al.](https://papers.nips.cc/paper/2073-a-natural-policy-gradient.pdf)
+  [Trust region](https://en.wikipedia.org/wiki/Trust_region), 
+  [Kakade et al.](https://papers.nips.cc/paper/2073-a-natural-policy-gradient.pdf), and
   [Kakade and Langford](https://people.eecs.berkeley.edu/~pabbeel/cs287-fa09/readings/KakadeLangford-icml2002.pdf)
 - [Proximal policy optimization](https://blog.openai.com/openai-baselines-ppo/)
 - ...

@@ -39,7 +39,17 @@ The policy found at the end managed to land the lunar lander, but only got appro
 ### Meeting on 02/22
 
 - Recap of reward-to-go policy gradient
-- Improvements of reward-to-go policy with baselines (value, q, and advantage functions)
+- Improvements of reward-to-go policy gradient with baselines (value, q, and advantage functions)
+
+### No meeting on 03/01
+
+### Meeting on 03/08
+
+- Trust region policy gradient (TRPO)
+
+### Meeting on 03/15
+
+- Proximal policy optimization (PPO)
 
 ---
 

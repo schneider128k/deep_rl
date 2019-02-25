@@ -36,6 +36,11 @@ Reimplement this algorithm using Keras.
 
 The policy found at the end managed to land the lunar lander, but only got approx. 50 as total reward. TODO: add the ability to save and load model.
 
+### Meeting on 02/22
+
+- Recap of reward-to-go policy gradient
+- Improvements of reward-to-go policy with baselines (value, q, and advantage functions)
+
 ---
 
 ### Topics for future meetings

@@ -2,7 +2,7 @@
 
 ## Install OpenAI gym on Windows 10
 
-- install Anaconda Python 3.7 version 64-bBit
+- install Anaconda Python 3.7 version 64-Bit
 
 [Anaconda](https://www.anaconda.com/) 
 

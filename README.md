@@ -2,9 +2,9 @@
 
 ## Install OpenAI gym on Windows 10
 
-- install Anaconda
+- install Anaconda Python 3.7 version 64-bBit
 
-[Anacond](https://www.anaconda.com/) installed Python 3.7 version 64-bBit
+[Anaconda](https://www.anaconda.com/) 
 
 - install Microsoft Visual Studio 2017 Community (version 15.9) and Build Tools for Visual Studio 2017 (version 15.9)
 
@@ -25,7 +25,7 @@ pip install gym[box2d]
 After running the above commanda the following packages are installed in the environment ```gym```:
 
 ```
-conda list
+(gym) C:\Users\PW>
 # packages in environment at C:\anaconda\envs\gym:
 #
 # Name                    Version                   Build  Channel

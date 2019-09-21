@@ -1,5 +1,27 @@
 # Deep reinforcement learning
 
+## Install OpenAI gym on Windows 10
+
+- install Anaconda
+- install Microsoft Visual Studio 2017 Community (version 15.9) and Build Tools for Visual Studio 2017 (version 15.9)
+[Visual Studio download older versions](https://my.visualstudio.com/Downloads?q=visual%20studio%202017&wt.mc_id=o~msft~vscom~older-downloads)
+
+```
+conda create --name gym python=3.6 pip
+conda activate gym
+conda env list
+pip install gym
+conda install git
+pip install git+https://github.com/Kojoley/atari-py.git
+conda install swig
+pip install box2d-py
+pip install gym[box2d]
+```
+
+---
+
+NEEDS TO BE UPDATED:
+
 I am offering a weekly seminar on deep reinforcement learning in Spring 2019.  My goal is put together materials and code for a course on deep reinforcement learning that I would teach in Fall 2019 or Spring 2020.
 
 ### Rendering openai gym in Google colab ###

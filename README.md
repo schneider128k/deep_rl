@@ -20,7 +20,7 @@ pip install box2d-py
 pip install gym[box2d]
 ```
 
-After running the above commanda the following packages are installed in the environment ```gym```:
+After running the above commands the following packages are installed in the environment ```gym```:
 
 ```
 (gym) C:\Users\PW>

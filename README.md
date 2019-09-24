@@ -49,6 +49,10 @@ wheel                     0.33.4                   py36_0
 wincertstore              0.2              py36h7fe50ca_0
 ```
 
+### Jupyter virtual environments
+
+[Jupyter virtual environments](https://janakiev.com/blog/jupyter-virtual-envs/)
+
 ---
 
 NEEDS TO BE UPDATED:

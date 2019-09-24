@@ -8,6 +8,8 @@
 
 It is important that the versions of python and build tools are compatible. See [python-windows-visual-c-14-required](https://www.scivision.dev/python-windows-visual-c-14-required/). I was getting the error *python-windows-visual-c-14-required* when trying to build atari-py because I had initially created the anaconda environment with the wrong version of python 3.5 instead of 3.6.
 
+Runn the following commands insider an Anaconda powershell.
+
 ```
 conda create --name gym python=3.6 pip
 conda activate gym
@@ -49,9 +51,13 @@ wheel                     0.33.4                   py36_0
 wincertstore              0.2              py36h7fe50ca_0
 ```
 
-### Jupyter virtual environments
+### Jupyter notebook 
 
-[Jupyter virtual environments](https://janakiev.com/blog/jupyter-virtual-envs/)
+The best is to use Anaconda navigator to launch jupyter Notebook.
+
+I initially tried following [jupyter virtual environments](https://janakiev.com/blog/jupyter-virtual-envs/), but I decided that it's easier to use Anaconda navigator.
+
+---
 
 ---
 

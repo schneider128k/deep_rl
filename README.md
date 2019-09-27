@@ -1,6 +1,6 @@
 # Deep reinforcement learning
 
-[Install OpenAI gym on Windows 10](https://github.com/schneider128k/deep_rl/blob/master/installation.md)
+[Install OpenAI gym on Windows 10](https://github.com/schneider128k/deep_rl/blob/master/installation/installation.md)
 
 ---
 

@@ -1,15 +1,28 @@
 import gym
 
-# env = gym.make('SpaceInvaders-v0')
-# env = gym.make('CartPole-v0')
-# env = gym.make('Taxi-v2')
-# env = gym.make('LunarLander-v2')
+max_num_steps = 10000
 
-env = gym.make('CarRacing-v0')
-env.reset()
+env_ids = [
+    'ChopperCommand-v0',
+    'BattleZone-v0',
+    'SpaceInvaders-v0',
+    'Acrobot-v1',
+    'CartPole-v0',
+    'Taxi-v2',
+    'LunarLander-v2',
+    'BipedalWalker-v2',
+    'CarRacing-v0'
+]
 
-for _ in range(1000):
-    env.render()
-    env.step(env.action_space.sample())
+for env_id in env_ids:
 
-env.close()
+    env = gym.make(env_id)
+    env.reset()
+
+    for _ in range(max_num_steps):
+        env.render()
+        _, _, done, _ = env.step(env.action_space.sample())
+        if done:
+            break
+
+    env.close()

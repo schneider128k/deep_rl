@@ -1,6 +1,6 @@
 ## Install OpenAI gym on Windows 10
 
-- install Anaconda Python 3.7 version 64-Bit from [Anaconda](https://www.anaconda.com/) 
+- install Anaconda Python 3.7 version 64-Bit using [Anaconda 2019.07 for Windows Installer](https://www.anaconda.com/); downloaded on 09/27/2019 
 
 - install Microsoft Visual Studio 2017 Community (version 15.9) and Build Tools for Visual Studio 2017 (version 15.9) from [Visual Studio download older versions](https://my.visualstudio.com/Downloads?q=visual%20studio%202017&wt.mc_id=o~msft~vscom~older-downloads)
 

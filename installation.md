@@ -8,7 +8,7 @@ install Microsoft Visual Studio 2017 Community (version 15.9) and Build Tools fo
 
 It is important that the versions of python and build tools are compatible. See [python-windows-visual-c-14-required](https://www.scivision.dev/python-windows-visual-c-14-required/). I was getting the error *python-windows-visual-c-14-required* when trying to build atari-py because I had initially created the anaconda environment with the wrong version of python 3.5 instead of 3.6.
 
-Runn the following commands insider an Anaconda powershell.
+Run the following commands inside an Anaconda powershell.
 
 ```
 conda create --name gym python=3.6 pip

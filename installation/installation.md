@@ -57,7 +57,7 @@ Follow instructions in [screenshot of Add Python Interpreter window in PyCharm](
 
 ### Test gym install 
 
-Run [```test_gym_install.py```](https://github.com/schneider128k/deep_rl/blob/master/test_gym_install.py) to iterate though a couple of gym environments. Note that above installation does not include MuJoCo, which is required for some environments.
+Run [```test_gym_install.py```](https://github.com/schneider128k/deep_rl/blob/master/installation/test_gym_install.py) to iterate though a couple of gym environments. Note that above installation does not include MuJoCo, which is required for some environments.
 
 ### Jupyter notebook 
 

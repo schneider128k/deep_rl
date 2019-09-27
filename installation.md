@@ -51,9 +51,13 @@ wheel                     0.33.6                   py36_0
 wincertstore              0.2              py36h7fe50ca_0
 ```
 
-### Create an Anaconda environment in PyCharm
+### Create Conda environment in PyCharm
 
+Follow instructions in [screenshot of Add Python Interpreter window in PyCharm](https://github.com/schneider128k/deep_rl/blob/master/conda_environment_pycharm.png).
 
+### Test gym install 
+
+Run [```test_gym_install.py```](https://github.com/schneider128k/deep_rl/blob/master/test_gym_install.py) to iterate though a couple of gym environments. Note that above installation does not include MuJoCo, which is required for some environments.
 
 ### Jupyter notebook 
 

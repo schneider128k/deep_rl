@@ -53,7 +53,7 @@ wincertstore              0.2              py36h7fe50ca_0
 
 ### Create Conda environment in PyCharm
 
-Follow instructions in [screenshot of Add Python Interpreter window in PyCharm](https://github.com/schneider128k/deep_rl/blob/master/conda_environment_pycharm.png).
+Follow instructions in [screenshot of Add Python Interpreter window in PyCharm](https://github.com/schneider128k/deep_rl/blob/master/installation/conda_environment_pycharm.png).
 
 ### Test gym install 
 

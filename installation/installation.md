@@ -11,15 +11,11 @@ It is important that the versions of python and build tools are compatible. See 
 Run the following commands inside an Anaconda powershell.
 
 ```
-conda create --name gym python=3.6 pip
+conda create --name gym python=3.6 pip git swig
 conda activate gym
-conda env list
-pip install gym
-conda install git
-pip install git+https://github.com/Kojoley/atari-py.git
-conda install swig
 pip install box2d-py
-pip install gym[box2d]
+pip install gym
+pip install git+https://github.com/Kojoley/atari-py.git
 ```
 
 After running the above commands, execute ```conda list``` to see the packages that have been installed in the environment ```gym```:

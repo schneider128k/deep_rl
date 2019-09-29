@@ -1,6 +1,6 @@
 ## World models
 
-### Train the variational autoencode
+### Train the variational autoencoder
  
 - Generate data with ``01_generate_data.py``.
 

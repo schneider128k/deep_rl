@@ -24,11 +24,15 @@ pip install gym
 pip install git+https://github.com/Kojoley/atari-py.git
 ```
 
-I think that it is best to install as many packages as possible with Anaconda Navigator or ```conda install``` instead of ```pip install```.  It is not possible to use ```conda install``` for the above three packages ```box2d-py```, ```gym```, and ```atari-py```. When pip installing these package, the following package are pip installed as well: ```cloudpickle```, ```numpy```, ```scipy```, ```future```, and ```pyglet```.  I haven't checked with, but maybe it would be better to conda install these packages, before pip installing the gym environment.  I will test this approach when installing everything from scratch 
+I think that it is best to install as many packages as possible with Anaconda navigator or ```conda install``` instead of ```pip install```.  However, it is not possible to conda install the three packages ```box2d-py```, ```gym```, and ```atari-py```. 
+
+Read [understanding conda and pip](https://www.anaconda.com/understanding-conda-and-pip/).
+
+When pip installing the three packages ```box2d-py```, ```gym```, and ```atari-py```, the following dependencies are pip installed as well: ```cloudpickle```, ```numpy```, ```scipy```, ```future```, and ```pyglet```.  I haven't checked this yet, but maybe it would be better to conda install these packages, before pip installing the gym environment.  I will test this approach when installing everything from scratch next time.
 
 ### Create Conda environment in PyCharm
 
-Follow instructions in [screenshot of Add Python Interpreter window in PyCharm](https://github.com/schneider128k/deep_rl/blob/master/installation/conda_environment_pycharm.png).
+Follow the instructions in [screenshot of Add Python Interpreter window in PyCharm](https://github.com/schneider128k/deep_rl/blob/master/installation/conda_environment_pycharm.png).
 
 ### Test gym install 
 
@@ -36,8 +40,8 @@ Run [```test_gym_install.py```](https://github.com/schneider128k/deep_rl/blob/ma
 
 ### Jupyter notebook 
 
-The best is to use Anaconda navigator to launch jupyter Notebook.
+Use Anaconda navigator to launch jupyter notebook.
 
 ### Tensorflow/Keras
 
-Use Anaconda navigator to install ```tensorflow-gpu``` and ```keras-gpu```. I am working here with tensorflow 1.14.  Eventually, I plan to port to tensorflow 2.0.
+Use Anaconda navigator to install ```tensorflow-gpu``` and ```keras-gpu```. I am working here with tensorflow 1.14.  Eventually, I plan to port the code to tensorflow 2.0.

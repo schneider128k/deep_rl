@@ -47,7 +47,6 @@ class VariationalAutoencoder():
         self._build()
 
     def _build(self):
-        
         # the encoder
         encoder_input = Input(shape=self.input_dim, name='encoder_input')
 
@@ -80,7 +79,7 @@ class VariationalAutoencoder():
 
         self.encoder_mu_log_var = Model(encoder_input, (self.mu, self.log_var))
 
-        # sampling
+        # sampling according to encoder output
         def sampling(args):
             mu, log_var = args
             epsilon = K.random_normal(shape=K.shape(mu), mean=0., stddev=1.)
@@ -91,7 +90,6 @@ class VariationalAutoencoder():
         self.encoder = Model(encoder_input, encoder_output)
 
         # the decoder
-
         decoder_input = Input(shape=(self.z_dim,), name='decoder_input')
 
         x = Dense(np.prod(shape_before_flattening))(decoder_input)
@@ -203,7 +201,7 @@ class VariationalAutoencoder():
         )
 
     # train with generator
-    def train_with_generator(self, data_flow, epochs, steps_per_epoch, run_folder, print_every_n_batches=100, initial_epoch=0, lr_decay= 1):
+    def train_with_generator(self, data_flow, epochs, steps_per_epoch, run_folder, print_every_n_batches=100, initial_epoch=0, lr_decay=1):
 
         custom_callback = CustomCallback(run_folder, print_every_n_batches, initial_epoch, self)
         lr_sched = step_decay_schedule(initial_lr=self.learning_rate, decay_factor=lr_decay, step_size=1)

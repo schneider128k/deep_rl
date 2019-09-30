@@ -26,3 +26,6 @@ Recurrent Neural Networks
 
 Mixture Density Networks
 
+---
+
+Check if using the independent component layer from the recent paper [Rethinking the Usage of Batch Normalization and Dropout](https://arxiv.org/pdf/1905.05928.pdf) leads to better performing variational autoencoders.

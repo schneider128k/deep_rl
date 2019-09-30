@@ -1,6 +1,10 @@
 # Deep reinforcement learning
 
+## Installation
+
 [Install OpenAI gym on Windows 10](https://github.com/schneider128k/deep_rl/blob/master/installation/installation.md)
+
+## Topics
 
 I am very much interested in the world models approach to reinforcement learning.
 

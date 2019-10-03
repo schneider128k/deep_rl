@@ -8,14 +8,14 @@ INPUT_DIM = (64, 64, 3)
 CONV_FILTERS = [32,64,64, 128]
 CONV_KERNEL_SIZES = [4,4,4,4]
 CONV_STRIDES = [2,2,2,2]
-CONV_ACTIVATIONS = ['relu','relu','relu','relu']
+CONV_ACTIVATIONS = ['relu', 'relu', 'relu', 'relu']
 
 DENSE_SIZE = 1024
 
 CONV_T_FILTERS = [64,64,32,3]
 CONV_T_KERNEL_SIZES = [5,5,6,6]
 CONV_T_STRIDES = [2,2,2,2]
-CONV_T_ACTIVATIONS = ['relu','relu','relu','sigmoid']
+CONV_T_ACTIVATIONS = ['relu', 'relu', 'relu', 'sigmoid']
 
 Z_DIM = 32
 
@@ -26,7 +26,7 @@ KL_TOLERANCE = 0.5
 
 def sampling(args):
     z_mean, z_sigma = args
-    epsilon = K.random_normal(shape=K.shape(z_sigma), mean=0.,stddev=1.)
+    epsilon = K.random_normal(shape=K.shape(z_sigma), mean=0., stddev=1.)
     return z_mean + z_sigma * epsilon
 
 

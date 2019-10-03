@@ -2,7 +2,7 @@ train_envs = ['car_racing']
 test_envs = ['car_racing']
 
 
-def generate_data_action(t, env):
+def generate_data_action(env):
     a = env.action_space.sample()
     return a
 

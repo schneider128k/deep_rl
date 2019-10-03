@@ -5,6 +5,8 @@ import numpy as np
 import random
 import argparse
 
+import gym
+
 # project modules
 import config
 from env import make_env
@@ -12,14 +14,14 @@ from env import make_env
 DIR_NAME = './data/rollout/'
 
 
-def main(args):
+def generate_data(arguments):
 
-    env_name = args.env_name
-    total_episodes = args.total_episodes
-    time_steps = args.time_steps
-    render = args.render
-    run_all_envs = args.run_all_envs
-    action_refresh_rate = args.action_refresh_rate
+    env_name = arguments.env_name
+    total_episodes = arguments.total_episodes
+    time_steps = arguments.time_steps
+    render = arguments.render
+    run_all_envs = arguments.run_all_envs
+    action_refresh_rate = arguments.action_refresh_rate
 
     if run_all_envs:
         envs_to_generate = config.train_envs
@@ -29,58 +31,53 @@ def main(args):
     for current_env_name in envs_to_generate:
         print("Generating data for env {}".format(current_env_name))
 
-        env = make_env(current_env_name)  # <1>
-        s = 0
+        env = make_env(current_env_name)
+        # env = gym.make('CarRacing-v0')
+        episode_idx = 0
 
-        while s < total_episodes:
+        while episode_idx < total_episodes:
 
             episode_id = random.randint(0, 2**31 - 1)
             filename = DIR_NAME + str(episode_id) + ".npz"
 
+            step = 0
             observation = env.reset()
-
             env.render()
-
-            t = 0
-
-            obs_sequence = []
+            observation = config.adjust_obs(observation)
+            obs_sequence = [observation]
             action_sequence = []
             reward_sequence = []
             done_sequence = []
+            action = None
 
-            reward = -0.1
-            done = False  # PW: looks like done is always False for the game "car racing"
+            while True:
+                if step % action_refresh_rate == 0:
+                    action = config.generate_data_action(env)
 
-            while t < time_steps:  # and not done:
-                if t % action_refresh_rate == 0:
-                    action = config.generate_data_action(t, env)  # <2>
-
-                observation = config.adjust_obs(observation)  # <3>
+                observation, reward, done, info = env.step(action)
+                if render:
+                    env.render()
+                observation = config.adjust_obs(observation)
 
                 obs_sequence.append(observation)
                 action_sequence.append(action)
                 reward_sequence.append(reward)
                 done_sequence.append(done)
 
-                observation, reward, done, info = env.step(action)  # <4>  PW: should check if done
+                step += 1
 
-                t = t + 1
+                if done or step == time_steps:
+                    break
 
-                if render:
-                    env.render()
+            print("Episode {} finished after {} timesteps".format(episode_idx, step))
 
-                if t == 299:
-                    print(observation.shape)
-                    print(action)
-                    print(reward)
-                    print(done)
+            np.savez_compressed(filename,
+                                obs=obs_sequence,
+                                action=action_sequence,
+                                reward=reward_sequence,
+                                done=done_sequence)
 
-            print("Episode {} finished after {} timesteps".format(s, t))
-
-            np.savez_compressed(filename, obs=obs_sequence, action=action_sequence,
-                                reward=reward_sequence, done=done_sequence)  # <4>
-
-            s = s + 1
+            episode_idx = episode_idx + 1
 
         env.close()
 
@@ -100,4 +97,4 @@ if __name__ == "__main__":
                         help='if true, will ignore env_name and loop over all envs in train_envs variables in config.py')
 
     args = parser.parse_args()
-    main(args)
+    generate_data(args)

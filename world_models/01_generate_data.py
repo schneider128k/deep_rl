@@ -5,96 +5,106 @@ import numpy as np
 import random
 import argparse
 
-import gym
-
-# project modules
-import config
-from env import make_env
+from custom_envs.env import make_env, generate_data_action, adjust_obs, adjust_reward
 
 DIR_NAME = './data/rollout/'
 
 
 def generate_data(arguments):
-
     env_name = arguments.env_name
     total_episodes = arguments.total_episodes
     time_steps = arguments.time_steps
     render = arguments.render
-    run_all_envs = arguments.run_all_envs
     action_refresh_rate = arguments.action_refresh_rate
 
-    if run_all_envs:
-        envs_to_generate = config.train_envs
-    else:
-        envs_to_generate = [env_name]
+    print(f'Generating data for env {env_name}')
+    env = make_env(env_name)
+    # env = gym.make('CarRacing-v0')
 
-    for current_env_name in envs_to_generate:
-        print("Generating data for env {}".format(current_env_name))
+    for episode_index in np.arange(total_episodes):
+        episode_id = random.randint(0, 2**31 - 1)
+        filename = f'{DIR_NAME}{episode_id}.npz'
 
-        env = make_env(current_env_name)
-        # env = gym.make('CarRacing-v0')
-        episode_idx = 0
+        # data that will be generated
+        #
+        # s (state)               s' (new state)
+        # r (reward)  a (action)  r' (new reward)
+        # d (done)                d' (new done)
+        #
+        # this means that the number of states, rewards, done flags is larger than the number of actions by 1
+        # the initial reward is 0
 
-        while episode_idx < total_episodes:
+        # initial state
+        observation = env.reset()
+        observation = adjust_obs(observation)
+        obs_sequence = [observation]
+        reward_sequence = [0.0]
+        done_sequence = [False]
+        action_sequence = []
+        # action=None needed; otherwise IDE warning about about potentially uninitialized variable
+        action = None
 
-            episode_id = random.randint(0, 2**31 - 1)
-            filename = DIR_NAME + str(episode_id) + ".npz"
+        env.render()
 
-            step = 0
-            observation = env.reset()
-            env.render()
-            observation = config.adjust_obs(observation)
-            obs_sequence = [observation]
-            action_sequence = []
-            reward_sequence = []
-            done_sequence = []
-            action = None
+        total_reward = 0.0
+        for step in np.arange(time_steps):
+            # select new action
+            if step % action_refresh_rate == 0:
+                action = generate_data_action(env)
+            # take action
+            action_sequence.append(action)
+            observation, reward, done, _ = env.step(action)
+            observation = adjust_obs(observation)
+            obs_sequence.append(observation)
+            # reward = adjust_reward(reward)
+            reward_sequence.append(reward)
+            done_sequence.append(done)
 
-            while True:
-                if step % action_refresh_rate == 0:
-                    action = config.generate_data_action(env)
+            total_reward += reward
+            # print(total_reward)
 
-                observation, reward, done, info = env.step(action)
-                if render:
-                    env.render()
-                observation = config.adjust_obs(observation)
+            if total_reward < -10.0:
+               break
 
-                obs_sequence.append(observation)
-                action_sequence.append(action)
-                reward_sequence.append(reward)
-                done_sequence.append(done)
+            if render:
+                env.render()
 
-                step += 1
+            if done:
+                break
 
-                if done or step == time_steps:
-                    break
+        print(f'Episode {episode_index} finished after {step} time steps')
 
-            print("Episode {} finished after {} timesteps".format(episode_idx, step))
+        np.savez_compressed(filename,
+                            obs=obs_sequence,
+                            action=action_sequence,
+                            reward=reward_sequence,
+                            done=done_sequence)
 
-            np.savez_compressed(filename,
-                                obs=obs_sequence,
-                                action=action_sequence,
-                                reward=reward_sequence,
-                                done=done_sequence)
-
-            episode_idx = episode_idx + 1
-
-        env.close()
+    env.close()
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create new training data')
-    parser.add_argument('env_name', type=str, help='name of environment')
-    parser.add_argument('--total_episodes', type=int, default=200,
-                        help='total number of episodes to generate per worker')
-    parser.add_argument('--time_steps', type=int, default=300,
+    parser.add_argument('--env_name',
+                        type=str,
+                        default='car_racing',
+                        help='name of environment')
+    parser.add_argument('--total_episodes',
+                        type=int,
+                        default=200,
+                        help='total number of episodes')
+    parser.add_argument('--time_steps',
+                        type=int,
+                        default=300,
                         help='how many time steps at start of episode?')
-    parser.add_argument('--render', default=0, type=int,
-                        help='render the env as data is generated')
-    parser.add_argument('--action_refresh_rate', default=20, type=int,
+    parser.add_argument('--action_refresh_rate',
+                        type=int,
+                        default=20,
                         help='how often to change the random action, in frames')
-    parser.add_argument('--run_all_envs', action='store_true',
-                        help='if true, will ignore env_name and loop over all envs in train_envs variables in config.py')
-
+    parser.add_argument('--render',
+                        type=int,
+                        default=0,
+                        help='render the env as data is generated')
     args = parser.parse_args()
+    # generate arguments
     generate_data(args)

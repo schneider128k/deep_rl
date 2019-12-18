@@ -64,7 +64,7 @@ def generate_data(arguments):
             # print(total_reward)
 
             if total_reward < -10.0:
-               break
+                break
 
             if render:
                 env.render()

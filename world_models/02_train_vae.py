@@ -1,76 +1,69 @@
 #python 02_train_vae.py --new_model
 
-from vae.arch import VAE
 import argparse
 import numpy as np
 import os
+import sys
+
+from vae.arch import VAE
 
 DIR_NAME = './data/rollout/'
-M = 300
+M = 300 + 1  # time steps plus 1
 SCREEN_SIZE_X = 64
 SCREEN_SIZE_Y = 64
 
 
-def import_data(N):
-    filelist = os.listdir(DIR_NAME)
-    filelist = [x for x in filelist if x != '.DS_Store']
-    filelist.sort()
-    length_filelist = len(filelist)
+def import_data(num_episodes):
+    filenames = os.listdir(DIR_NAME)
+    filenames = [filename for filename in filenames if filename.endswith('.npz')]
+    filenames.sort()
 
-    if length_filelist > N:
-        filelist = filelist[:N]
+    num_episodes = min(num_episodes, len(filenames))
+    filenames = filenames[:num_episodes]
+    # assumes that number of observations is 301 (time steps plus 1)
+    # shorter episodes will be skipped
+    data = np.zeros((M * num_episodes, SCREEN_SIZE_X, SCREEN_SIZE_Y, 3), dtype=np.float32)
+    imported_idx = 0
 
-    if length_filelist < N:
-        N = length_filelist
-
-    data = np.zeros((M * N, SCREEN_SIZE_X, SCREEN_SIZE_Y, 3), dtype=np.float32)
-    idx = 0
-    file_count = 0
-
-    for file in filelist:
+    for idx in np.arange(num_episodes):
         try:
-            new_data = np.load(DIR_NAME + file)['obs']
+            new_data = np.load(DIR_NAME + filenames[idx])['obs']
             print(new_data.shape)
-            # there is always one more observation than action, reward
-            data[idx:(idx + M), :, :, :] = new_data[:M, :, :, :]
-
-            idx += M
-            file_count += 1
-
-            if file_count % 50 == 0:
-                print('Imported {} / {} ::: Current data size = {} observations'.format(file_count, N, idx))
+            data[imported_idx * M:(imported_idx + 1) * M, :, :, :] = new_data[:M, :, :, :]
+            imported_idx += 1
 
         except (IOError, ValueError):
-            print('Skipped {}...'.format(file))
+            print(f'=======================> Skipped {filenames[idx]}')
 
-    print('Imported {} / {} ::: Current data size = {} observations'.format(file_count, N, idx))
+    print(f'Imported {imported_idx} out of {num_episodes} episodes')
 
-    return data, N
+    return data, num_episodes
 
 
 def main(args):
-
-    new_model = args.new_model
-    N = int(args.N)
+    reuse_weights = args.reuse_weights
+    num_episodes = int(args.num_episodes)
     epochs = int(args.epochs)
 
     vae = VAE()
 
-    if not new_model:
+    if reuse_weights:
         try:
+            print('===> loading previously saved weights')
             vae.set_weights('./vae/weights.h5')
-        except:
+
+        except:  # do not use bare except
             print("Either set --new_model or ensure ./vae/weights.h5 exists")
             raise
 
     try:
-        data, N = import_data(N)
+        data, num_episodes = import_data(num_episodes)
 
-    except:
+    except:  # do not use bare except
         print('NO DATA FOUND')
         raise
 
-    print('DATA SHAPE = {}'.format(data.shape))
+    print(f'DATA SHAPE = {data.shape}')
 
     for epoch in range(epochs):
         print('EPOCH ' + str(epoch))
@@ -80,8 +73,8 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Train VAE')
-    parser.add_argument('--N', default=10000, help='number of episodes to use to train')
-    parser.add_argument('--new_model', action='store_true', help='start a new model from scratch?')
+    parser.add_argument('--num_episodes', default=200, help='number of episodes to use to train')
+    parser.add_argument('--reuse_weights', default=True, help='start a new model from scratch?')
     parser.add_argument('--epochs', default=10, help='number of epochs to train for')
     args = parser.parse_args()
 
